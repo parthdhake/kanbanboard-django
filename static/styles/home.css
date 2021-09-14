@@ -84,13 +84,15 @@ span {
 }
 
 #sidebar ul li a {
-  text-align: left;
+  text-align: center;
+  margin: 8px;
 }
 
 #sidebar.active ul li a {
   padding: 20px 10px;
   text-align: center;
   font-size: 0.85em;
+  margin: 8px;
 }
 
 #sidebar.active ul li a i {
@@ -131,6 +133,7 @@ span {
 #sidebar ul li a {
   padding: 10px;
   font-size: 1.1em;
+  margin: 8px !important;
   display: block;
 }
 
@@ -233,6 +236,7 @@ a.article:hover {
   }
   #sidebar ul li a {
     padding: 20px 10px;
+    margin: 8px;
   }
   #sidebar ul li a span {
     font-size: 0.85em;

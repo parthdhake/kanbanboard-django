@@ -1,7 +1,7 @@
-from .formtemplate import RegisterForm
+from templates.formtemplate import RegisterForm
 
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
