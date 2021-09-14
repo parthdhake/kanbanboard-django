@@ -5,6 +5,10 @@ from django.contrib.auth import authenticate, login
 
 
 # Create your views here.
+def login_signup(request):
+    return render(request, 'userAuth/login_signup.html')
+
+
 def userlogin(request):
     if request.method == 'POST':
         username = request.POST['username']

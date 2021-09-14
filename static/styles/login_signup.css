@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  height: 100%;
+}
+
+.logo {
+  flex: 3;
+  height: 100%;
+  width: 75%;
+  top: 0;
+  bottom: 0;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+}
+
+.ls {
+  display: flex;
+  text-align: center;
+
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  flex: 1;
+  background-color: lightblue;
+  height: 100%;
+  width: 25%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
