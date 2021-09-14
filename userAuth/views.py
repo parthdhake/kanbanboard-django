@@ -6,10 +6,15 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def login_signup(request):
-    return render(request, 'userAuth/login_signup.html')
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        return render(request, 'userAuth/login_signup.html')
 
 
 def userlogin(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -24,8 +29,9 @@ def userlogin(request):
 
 
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     form = RegisterForm()
-
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():

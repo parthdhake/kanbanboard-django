@@ -65,6 +65,7 @@ span {
   max-width: 250px;
   background: #7386d5;
   color: #fff;
+  height: 100vh;
   transition: all 0.3s;
 }
 
