@@ -48,23 +48,32 @@
   <div class="container">
     <div class="row">
       {% for board in boards %}
-
-      <div class="col-md-4">
-        <div class="card card-1">
-          <h3>{{board.title}}</h3>
-          <p>{{board.content}}</p>
+      <a class="col-md-4" href="{% url 'board' board.id %}">
+        <div>
+          <div class="card card-1">
+            <h3>{{board.title}}</h3>
+            <p>{{board.content}}</p>
+          </div>
         </div>
-      </div>
-
+      </a>
       {% endfor %}
 
       <div class="col-md-4">
         <div
+          style="justify-content: center; align-items: center"
           class="card card-2"
           data-toggle="modal"
           data-target="#exampleModalCenter"
         >
-          <p><i class="fas fa-plus"></i></p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
+          </svg>
+          <p style="margin-bottom: 0px; margin-top: 1em">Add a new board</p>
         </div>
       </div>
     </div>

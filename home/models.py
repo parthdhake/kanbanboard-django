@@ -12,16 +12,44 @@ class Board(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return str(self.id)
+
+
+PRIORITY_CHOICES = (
+    ('high', 'HIGH'),
+    ('medium', 'MEDIUM'),
+    ('low', 'LOW'),
+)
+
+COLOR_CHOICES = {
+    ('green', 'GREEN'),
+    ('white', 'WHITE'),
+    ('red', 'RED'),
+}
+
+STATUS_CHOICES = (
+    ('to do', 'TO DO'),
+    ('in progress', 'IN PROGRESS'),
+    ('completed', 'COMPLETED'),
+    ('done', 'DONE'),
+)
 
 
 class Card(models.Model):
-    # card_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50)
     content = models.TextField()
+    priority = models.CharField(max_length=6,
+                                choices=PRIORITY_CHOICES,
+                                default='medium')
+    status = models.CharField(max_length=11,
+                              choices=STATUS_CHOICES,
+                              default='to do')
+    color = models.CharField(max_length=6,
+                             choices=COLOR_CHOICES,
+                             default='white')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return str(self.id)

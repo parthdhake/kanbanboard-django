@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from templates.formtemplate import BoardForm
-from home.models import Board
+from templates.formtemplate import BoardForm, CardForm
+from home.models import Board, Card
 
 # Create your views here.
 
@@ -20,42 +20,35 @@ def home(request):
         if form.is_valid():
             form.instance.user = request.user
             form.save()
-            return render(request, 'home.html', context)
+            return render(request, 'home/dashboard.html', context)
 
     return render(request, 'home/dashboard.html', context)
 
 
 @login_required(login_url='login')
 def board_details(request, pk):
+    context = {}
+    form = CardForm()
+    context['form'] = form
+
+    if request.user.is_authenticated:
+        cards = Card.objects.filter(board=pk)
+        context['cards'] = cards
+        print(cards)
 
     if request.method == 'POST':
-        form = BoardForm(request.POST)
+        form = CardForm(request.POST)
+        form.instance.board = Board.objects.get(id=pk)
+        form.instance.user = request.user
+        # if form.instance.status == "MEDIUM":
+        #     form.instance.color = "WHITE"
+        # elif form.instance.status == "HIGH":
+        #     form.instance.color = "RED"
+        # elif form.instance.status == "LOW":
+        #     form.instance.color = "GREEN"
         if form.is_valid():
-            form.instance.user = request.user
+            print(form.cleaned_data)
             form.save()
-            return render(request, 'home.html')
+            return redirect('board', pk=pk)
 
-    if request.method == 'DELETE':
-        board = Board.objects.get(pk=pk)
-        board.delete()
-        return render(request, 'home.html')
-
-    if request.method == 'PUT':
-        board = Board.objects.get(pk=pk)
-        form = BoardForm(request.POST, instance=board)
-        if form.is_valid():
-            form.instance.user = request.user
-            form.save()
-            return render(request, 'home.html')
-
-    if request.method == 'UPDATE':
-        board = Board.objects.get(pk=pk)
-        form = BoardForm(request.POST, instance=board)
-        if form.is_valid():
-            form.instance.user = request.user
-            form.save()
-            return render(request, 'home.html')
-
-    board = Board.objects.get(pk=pk)
-    context = {'board': board}
     return render(request, 'home/board_details.html', context)
