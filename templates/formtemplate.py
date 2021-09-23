@@ -7,12 +7,12 @@ from home.models import Board, Card
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(label="Email")
-    fullname = forms.CharField(label="Full name")
+    # fullname = forms.CharField(label="Full name")
 
     class Meta:
         model = User
         fields = (
-            "fullname",
+            "first_name",
             "username",
             "email",
             "password1",
