@@ -68,6 +68,8 @@ ol.kanban.Done {
 
 a > svg {
   margin: 5px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 ol.kanban {
