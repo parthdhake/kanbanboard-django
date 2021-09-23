@@ -43,8 +43,9 @@ body {
   }
   .logo {
     flex: 3;
-    height: 75vh;
+    height: 70vh;
     width: 100%;
+    background: #d4efff;
     top: 0;
     bottom: 0;
   }
@@ -57,10 +58,18 @@ body {
     flex: 1;
     background-color: lightblue;
     width: 100%;
-    height: 25vh;
+    height: 30vh;
   }
 
   .inner_ls > p {
     margin: 10px !important;
+  }
+
+  .image {
+    height: auto;
+    margin: 100px 0 100px 0;
+    width: 100%;
+    top: 0;
+    bottom: 0;
   }
 }
