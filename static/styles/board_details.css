@@ -66,6 +66,10 @@ ol.kanban.Done {
   border-top: 5px solid #8bc34a;
 }
 
+a > svg {
+  margin: 5px;
+}
+
 ol.kanban {
   border-top: 5px solid #78909c;
   width: 20%;

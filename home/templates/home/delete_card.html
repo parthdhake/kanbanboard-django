@@ -1,0 +1,49 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<link
+  href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,900"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="{% static 'styles/card.css' %}" />
+
+<link rel="stylesheet" href="{% static 'styles/board_details.css' %}" />
+
+<div style="flex-grow: 2">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Are you sure want to delte the card?
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="modal-footer">
+          <a href={% url 'board' card.board.id %}>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Go Back
+            </button></a
+          >
+          <button type="submit" class="btn btn-primary">Yes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

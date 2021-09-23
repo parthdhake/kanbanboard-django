@@ -51,4 +51,32 @@ def board_details(request, pk):
             form.save()
             return redirect('board', pk=pk)
 
+    if request.method == 'DELETE':
+        card = Card.objects.get(id=pk)
+        card.delete()
+        return redirect('board', pk=pk)
+
+
     return render(request, 'home/board_details.html', context)
+
+@login_required(login_url='login')
+def update_details(request, pk):
+    context={}
+    card = Card.objects.get(id=pk)
+    if request.method == 'POST':
+        form = CardForm(request.POST, instance=card)
+        if form.is_valid():
+            form.save()
+            return redirect('board', pk=card.board.id)
+    else:
+        form = CardForm(instance=card)
+    context['form'] = form
+    return render(request, 'home/card_update.html', context)
+
+@login_required(login_url='login')
+def delete_card(request, pk):
+    card = Card.objects.get(id=pk)
+    if request.method == 'POST':
+        card.delete()
+        return redirect('board', pk=card.board.id)
+    return render(request, 'home/delete_card.html', {"card": card})
